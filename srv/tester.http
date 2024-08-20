@@ -1,0 +1,80 @@
+
+
+###Get the service document
+http://localhost:4004/odata/v4/catalogService
+
+###Get service metadata document
+http://localhost:4004/odata/v4/CatalogService/$metadata
+
+###Get all Employee Data
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+
+###Get single employee data by KEY (ID)
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C198E7FB
+
+
+###Get the total count of all employees - $count
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/$count
+
+
+###Get all Employee Data top 3
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?&$top=3 
+
+
+###Filtering data based on condition - $filter
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=bankName eq 'HDFC'
+
+###Pattern based filtering
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=contains(nameFirst,'sh')
+
+
+###Select particular column data - $select
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$select=nameFirst,nameLast,sex
+
+
+###Select particular column data - $select
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$select=nameFirst,nameLast,sex&$filter=contains(nameFirst,'s')
+
+### UPDATE 
+
+
+PATCH http://localhost:4004/odata/v4/catalogService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C198E7FB
+Content-Type: application/json
+
+{   
+    "salaryAmount":200000,
+    "currency_code": "USD"
+    
+}
+
+
+### create new data payload into the employee set
+
+POST http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+Content-Type: application/json
+
+{
+    "nameFirst" : "sandeep",
+    "nameLast" : "reddy",
+    "sex" : "M",
+    "language" : "T",
+    "phoneNumber" : "+91 6934526672",
+    "email" : "reddy@gmail.com",
+    "currency_code" : "IN",
+    "salaryAmount": 2567,
+    "accountNumber" : "1234567890",
+    "bankId" : "0090",
+    "bankName": "ICIC"
+}
+
+
+
+###
+
+delete http://localhost:4004/odata/v4/CatalogService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C198E7FB
+ 
+
+
+###
+
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=startswith(nameFirst,'s')
